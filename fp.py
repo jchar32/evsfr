@@ -69,8 +69,8 @@ class forcePlate:
     def _cop(self) -> np.ndarray:
         """Calculate the center of pressure (CoP) based on force plate data."""
 
-        self.cop_x = (-(self.my + self.fx * self.offsets[-1]) / self.fz) + self.offsets[0]
-        self.cop_y = ((self.mx + self.fy * self.offsets[-1]) / self.fz) + self.offsets[1]
+        self.cop_x = -(self.my + self.fx) / self.fz
+        self.cop_y = (self.mx + self.fy) / self.fz
         self.cop_z = np.zeros(self.fx.shape)
         self.mzfree = self.mz + self.fx * self.cop_y + self.fy * self.cop_x
         return np.array([self.cop_x, self.cop_y, self.cop_z, self.mzfree])
